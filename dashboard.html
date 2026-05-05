@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Management System</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="m-style.css" media="(max-width:768px)" />
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="data.js" defer></script>
+    <script src="contract.js" defer></script>
+    <script src="dashboard.js" defer></script>
+    <script src="schedule.js" defer></script>
+    <script src="notice.js" defer></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="header-inner flex">
+          <div class="menu">
+            <button class="btn-menu" aria-label="메뉴 열기"></button>
+          </div>
+          <div class="header-wrap flex">
+            <div class="logo flex">
+              <a href="" class="flex" style="align-items: center">
+                <img src="images/favicon-32x32.png" alt="logo" />
+                <h1 class="logo-txt">HRMS</h1>
+              </a>
+            </div>
+
+            <div class="header-bar">
+              <ul class="header-bar-list flex">
+                <li class="header-bar-list-item">
+                  <a href="">
+                    <button class="icon-btn new">
+                      <img src="images/refresh.svg" alt="change" />
+                    </button>
+                  </a>
+                </li>
+                <li class="header-bar-list-item">
+                  <button class="icon-btn" id="darkmode">
+                    <img
+                      src="images/darkmode.svg"
+                      alt="lightmode"
+                      class="lightmode-img"
+                    />
+                    <img
+                      src="images/darkmode-fill.svg"
+                      alt="darkmode"
+                      class="darkmode-img"
+                      style="display: none"
+                    />
+                  </button>
+                </li>
+                <li class="header-bar-list-item dropdown">
+                  <button class="icon-btn">
+                    <img src="images/setting.svg" alt="setting" />
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="layout">
+        <div class="main-wrap flex">
+          <div class="aside">
+            <div class="aside-inner">
+              <ul class="nav">
+                <li class="nav-item is-active" data-target="home">
+                  <img src="images/home.svg" alt="home" />
+                  <span class="nav-txt">홈</span>
+                </li>
+                <li class="nav-item" data-target="schedule">
+                  <img src="images/schedule1.svg" alt="date" />
+                  <span class="nav-txt">근무일정</span>
+                </li>
+                <li class="nav-item" data-target="attendance">
+                  <img src="images/timecheck.svg" alt="date" />
+                  <span class="nav-txt">출퇴근기록</span>
+                </li>
+                <li class="nav-item" data-target="vacation">
+                  <img src="images/vacation.svg" alt="date" />
+                  <span class="nav-txt">휴가관리</span>
+                </li>
+                <li class="nav-item" data-target="approval">
+                  <img src="images/approve1.svg" alt="date" />
+                  <span class="nav-txt">전자결재</span>
+                </li>
+                <li class="nav-item" data-target="contract">
+                  <img src="images/approve2.svg" alt="date" />
+                  <span class="nav-txt">전자계약</span>
+                </li>
+                <li class="nav-divider"></li>
+                <li class="nav-item" data-target="notice">
+                  <img src="images/notice.svg" alt="date" />
+                  <span class="nav-txt">사내공지</span>
+                </li>
+                <li class="nav-item" data-target="message">
+                  <img
+                    src="images/send1.svg"
+                    alt="date"
+                    class="nav-item-message-img"
+                  />
+                  <span class="nav-txt">메시지</span>
+                </li>
+                <li class="nav-divider"></li>
+                <li class="nav-item" data-target="account">
+                  <img src="images/account.svg" alt="date" />
+                  <span class="nav-txt">계정</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="main">
+            <div class="content">
+              <section class="section is-active" data-page="home">
+                <div class="dashboard home">
+                  <div class="card profile-card" data-target="account">
+                    <div class="profile-info flex">
+                      <div class="profile-img">
+                        <img
+                          src="images/supervisoraccount.svg"
+                          alt="profile-img"
+                        />
+                      </div>
+                      <div class="profile-text flex">
+                        <div class="profile-name">하미니</div>
+                        <div class="profile-meta">HR Manager · MBC Company</div>
+                      </div>
+                    </div>
+                    <div class="profile-badge">ADMIN</div>
+                  </div>
+                  <div class="card schedule-card" data-target="schedule">
+                    <div class="card-header">
+                      <div class="card-title-wrap">
+                        <div class="card-title-icon">
+                          <img
+                            src="images/timecheck.svg"
+                            alt="출퇴근현황 아이콘"
+                          />
+                        </div>
+                        <div class="card-title">
+                          <h2 class="card-title-txt">출퇴근 현황</h2>
+                        </div>
+                      </div>
+                      <button class="next-page">
+                        <img
+                          src="images/pagemove.svg"
+                          alt="출퇴근현황 페이지 이동"
+                        />
+                      </button>
+                    </div>
+                    <div class="status-grid">
+                      <div class="status-item wide common">
+                        <span class="label">총 인원</span>
+                        <strong class="colorBlue">981</strong>
+                      </div>
+                      <div class="status-item wide danger">
+                        <span class="label">미출근</span>
+                        <strong class="danger">13</strong>
+                      </div>
+                      <div class="status-item">
+                        <span class="label">연차</span>
+                        <strong>5</strong>
+                      </div>
+                      <div class="status-item">
+                        <span class="label">출장</span>
+                        <strong>31</strong>
+                      </div>
+                      <div class="status-item">
+                        <span class="label">휴가</span>
+                        <strong>8</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card approval-card" data-target="approval">
+                    <div class="card-header">
+                      <div class="card-title-wrap">
+                        <div class="card-title-icon">
+                          <img src="images/approve1.svg" alt="전자결재" />
+                        </div>
+                        <div class="card-title">
+                          <h2 class="card-title-txt">승인 대기 결제</h2>
+                        </div>
+                      </div>
+                      <button class="next-page">
+                        <img src="images/pagemove.svg" alt="결재 페이지 이동" />
+                      </button>
+                    </div>
+                    <ul class="approval-list">
+                      <li>
+                        <span class="title">연차 신청</span>
+                        <span class="count-pill danger">2건</span>
+                      </li>
+                      <li>
+                        <span class="title">출장 신청</span>
+                        <span class="count-pill">11건</span>
+                      </li>
+                      <li>
+                        <span class="title">휴가 신청</span>
+                        <span class="count-pill">3건</span>
+                      </li>
+                      <li>
+                        <span class="title">야근 / 주말 근무</span>
+                        <span class="count-pill">7건</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card notice-card" data-target="notice">
+                    <div class="card-header">
+                      <div class="card-title-wrap">
+                        <div class="card-title-icon">
+                          <img src="images/notice.svg" alt="공지" />
+                        </div>
+                        <div class="card-title">
+                          <h2 class="card-title-txt">공지 관리</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="notice-list">
+                      <li>
+                        <span class="title">12월 급여 일정 안내</span>
+                        <span class="date">12.05</span>
+                      </li>
+                      <li>
+                        <span class="title">재택근무 정책 변경</span>
+                        <span class="date">11.27</span>
+                      </li>
+                      <li>
+                        <span class="title"> 사내 보안 교육 안내</span>
+                        <span class="date">11.14</span>
+                      </li>
+                    </ul>
+                    <div class="notice-actions">
+                      <button class="notice-btn add">
+                        <img src="images/addnoti.svg" alt="공지추가" />
+                        <span>공지 추가</span>
+                      </button>
+                      <button class="notice-btn edit">
+                        <img src="images/editnotification.svg" alt="공지수정" />
+                        <span>공지 수정</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card summary-card">
+                    <div class="card-header">
+                      <div class="card-title-wrap">
+                        <div class="card-title-icon">
+                          <img src="images/chart3.svg" alt="icon" />
+                        </div>
+                        <div class="card-title">
+                          <h2 class="card-title-txt">이번 달 요약</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="summary-item">
+                      <div class="summary-row">
+                        <div class="summary-text">
+                          <span class="label">평균 근무시간</span>
+                          <strong class="value"
+                            >8.2<span class="font-s">h</span></strong
+                          >
+                        </div>
+                        <span class="summary-sub">기준 8h</span>
+                      </div>
+                      <div class="progress toss">
+                        <div class="progress-bar" data-value="82"></div>
+                      </div>
+                    </div>
+                    <div class="summary-item">
+                      <div class="summary-row">
+                        <div class="summary-text">
+                          <span class="label">연차 사용률</span>
+                          <strong class="value"
+                            >12<span class="font-s">%</span>
+                          </strong>
+                        </div>
+                        <span class="summary-sub">연 15일 기준</span>
+                      </div>
+                      <div class="progress toss gray">
+                        <div class="progress-bar" data-value="12"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="schedule">
+                <div class="dashboard schedule">
+                  <div class="schedule-top">
+                    <div class="schedule-title">
+                      <h1>근무일정</h1>
+                      <button class="help-btn">
+                        <img src="images/help.svg" alt="도움말" />
+                      </button>
+                      <div class="toggle-wrap">
+                        <span>휴가 관리</span>
+                        <label class="toggle">
+                          <input
+                            type="checkbox"
+                            class="toggle-input"
+                            id="mixToggle"
+                          />
+                          <span class="slider"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <button type="button" class="schedule-add-btn">
+                      <img
+                        src="images/scedule-add-btn.svg"
+                        alt="schedule-add"
+                      />근무일정 추가
+                    </button>
+                  </div>
+                  <div class="schedule-control">
+                    <div class="date-nav">
+                      <button class="schedule-prev-btn">
+                        <img
+                          src="images/pagemove.svg"
+                          alt="page"
+                          style="transform: rotate(180deg)"
+                        />
+                      </button>
+                      <button class="schedule-next-btn">
+                        <img src="images/pagemove.svg" alt="page" />
+                      </button>
+                      <button class="today-btn">
+                        <span class="today-btn-txt">오늘</span>
+                      </button>
+                      <span class="data-text-today"></span>
+                    </div>
+                    <div class="schedule-mode">
+                      <button class="schedule-save">확정하기</button>
+                      <button type="button" class="view-mode day active">
+                        일
+                      </button>
+                      <button type="button" class="view-mode week">주</button>
+                      <button type="button" class="view-mode month">월</button>
+                    </div>
+                  </div>
+                  <div class="schedule-board">
+                    <div class="time-header">
+                      <div class="check-all-header">
+                        <label class="check-all">
+                          <input
+                            type="checkbox"
+                            class="checkAll"
+                            data-scope="schedule"
+                          />
+                          <span class="check-all-txt">전체</span>
+                        </label>
+                      </div>
+                      <div class="empt"></div>
+                      <div
+                        class="schedule-header-main"
+                        id="scheduleHeaderMain"
+                      ></div>
+                    </div>
+                    <div class="schedule-body"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="attendance">
+                <div class="dashboard attendance">
+                  <div class="schedule-top">
+                    <div class="schedule-title">
+                      <h1>출퇴근기록</h1>
+                      <button class="help-btn">
+                        <img src="images/help.svg" alt="도움말" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="attendance-control">
+                    <div class="date-nav">
+                      <button class="attendance-prev-btn">
+                        <img
+                          src="images/pagemove.svg"
+                          alt="prev"
+                          style="transform: rotate(180deg)"
+                        />
+                      </button>
+                      <button class="attendance-next-btn">
+                        <img src="images/pagemove.svg" alt="next" />
+                      </button>
+                      <button class="today-btn">
+                        <span class="today-btn-txt">오늘</span>
+                      </button>
+                      <span class="attendance-today-txt"></span>
+                    </div>
+                    <div class="attendance-filter">
+                      <img
+                        src="images/filter3.svg"
+                        alt="filter-img"
+                        class="att-select-filter"
+                      />
+                      <select id="attDeptFilter" class="att-select">
+                        <option value="all">전체 부서</option>
+                        <option value="Management">Management</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Design">Design</option>
+                        <option value="Production">Production</option>
+                        <option value="R&D">R&D</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="attendance-board">
+                    <div class="attendance-time-header">
+                      <div class="attendance-time-header-employee"></div>
+                      <div
+                        class="attendance-header-days"
+                        id="attHeaderDays"
+                      ></div>
+                    </div>
+                    <div class="attendance-body" id="attBody"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="vacation">
+                <div class="dashboard vacation">
+                  <div class="schedule-top">
+                    <div class="schedule-title">
+                      <h1>휴가관리</h1>
+                      <button class="help-btn">
+                        <img src="images/help.svg" alt="도움말" />
+                      </button>
+                    </div>
+                    <div class="vacation-btn-group">
+                      <button type="button" class="vacation-rate-btn">
+                        <img src="images/vacation-rate.svg" alt="img" />연차휴가
+                        사용률
+                      </button>
+                      <button type="button" class="vacation-add-btn">
+                        <img
+                          src="images/vacation-add-btn.svg"
+                          alt="vacation-add"
+                        />휴가일정 추가
+                      </button>
+                    </div>
+                  </div>
+                  <div class="schedule-control">
+                    <div class="date-nav">
+                      <button class="schedule-prev-btn">
+                        <img
+                          src="images/pagemove.svg"
+                          alt="page"
+                          style="transform: rotate(180deg)"
+                        />
+                      </button>
+                      <button class="schedule-next-btn">
+                        <img src="images/pagemove.svg" alt="page" />
+                      </button>
+                      <button class="today-btn">
+                        <span class="today-btn-txt">오늘</span>
+                      </button>
+                      <span class="data-text-today"></span>
+                    </div>
+
+                    <div class="schedule-mode">
+                      <button class="schedule-save">확정하기</button>
+                      <button type="button" class="view-mode day active">
+                        일
+                      </button>
+                      <button type="button" class="view-mode week">주</button>
+                      <button type="button" class="view-mode month">월</button>
+                    </div>
+                  </div>
+                  <div class="schedule-board">
+                    <div class="time-header">
+                      <div class="check-all-header">
+                        <label class="check-all">
+                          <input
+                            type="checkbox"
+                            class="checkAll"
+                            data-scope="vacation"
+                          />
+                          <span class="check-all-txt">전체</span>
+                        </label>
+                      </div>
+                      <div class="empt"></div>
+                      <div
+                        class="schedule-header-main"
+                        id="scheduleHeaderMain"
+                      ></div>
+                    </div>
+                    <div class="vacation-body"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="approval">
+                <div class="dashboard approval">
+                  <div class="schedule-top">
+                    <div class="schedule-title">
+                      <h1>전자결재</h1>
+                      <button class="help-btn">
+                        <img src="images/help.svg" alt="도움말" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="approval-control">
+                    <div class="approval-process">
+                      <button class="process-btn active" data-process="all">
+                        전체
+                      </button>
+                      <button class="process-btn" data-process="pending">
+                        진행
+                      </button>
+                      <button class="process-btn" data-process="approved">
+                        완료
+                      </button>
+                      <button class="process-btn" data-process="rejected">
+                        반려
+                      </button>
+                    </div>
+                    <div class="approval-filters">
+                      <div
+                        class="approval-filters-img filter-btn active"
+                        data-filter="all"
+                      >
+                        <img src="images/filter2.svg" alt="filter" />
+                      </div>
+                      <button class="filter-btn" data-filter="vacation">
+                        휴가 신청
+                      </button>
+                      <button class="filter-btn" data-filter="schedule">
+                        근무일정 변경
+                      </button>
+                      <button class="filter-btn" data-filter="trip">
+                        출장 신청
+                      </button>
+                      <button class="filter-btn" data-filter="payroll">
+                        연장근무 신청
+                      </button>
+                      <button class="filter-btn" data-filter="etc">기타</button>
+                    </div>
+                  </div>
+                  <div class="approval-board">
+                    <div class="approval-board-head">
+                      <div class="approval-item">
+                        <span class="approval-head-txt">요청 종류</span>
+                      </div>
+                      <div class="approval-content">
+                        <span class="approval-head-txt">요청 사항</span>
+                      </div>
+                      <div class="approval-status">
+                        <span class="approval-head-txt">상태</span>
+                      </div>
+                      <div class="approval-action">
+                        <span class="approval-head-txt">관리</span>
+                      </div>
+                    </div>
+                    <div class="approval-board-body"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="contract">
+                <div class="dashboard contract">
+                  <div class="schedule-top">
+                    <div class="schedule-title">
+                      <h1>전자계약</h1>
+                      <button class="help-btn">
+                        <img src="images/help.svg" alt="도움말" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="contract-control">
+                    <div class="contract-process-wrap">
+                      <div class="contract-process">
+                        <button
+                          class="contract-process-btn active"
+                          data-process="all"
+                        >
+                          전체
+                        </button>
+                        <button
+                          class="contract-process-btn"
+                          data-process="pending"
+                        >
+                          진행
+                        </button>
+                        <button
+                          class="contract-process-btn"
+                          data-process="approved"
+                        >
+                          완료
+                        </button>
+                        <button
+                          class="contract-process-btn"
+                          data-process="rejected"
+                        >
+                          반려
+                        </button>
+                      </div>
+                      <div class="contract-wrap">
+                        <div class="contract-request">
+                          <button type="button" class="contract-request-btn">
+                            <img
+                              src="images/contract_icon.svg"
+                              alt=""
+                              class="contract-request-img"
+                            />
+                            <span class="contract-request-txt"
+                              >전자계약서 요청</span
+                            >
+                          </button>
+                        </div>
+                        <div class="contract-add">
+                          <button type="button" class="contract-add-btn">
+                            <img
+                              src="images/contract_edit.svg"
+                              alt=""
+                              class="contract-add-img"
+                            />
+                            <span class="contract-add-txt">계약서 추가</span>
+                          </button>
+                        </div>
+                        <div class="contract-edit">
+                          <button type="button" class="contract-edit-btn">
+                            <img
+                              src="images/save2.svg"
+                              alt="save"
+                              class="contract-save-btn"
+                            />
+                            <span class="contract-edit-txt">보관함 이동</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="contract-filters">
+                      <button
+                        class="contract-filter-btn active"
+                        data-item="contract-all"
+                      >
+                        전체
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-work"
+                      >
+                        근로계약서
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-protect"
+                      >
+                        정보보호 서약서
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-vacation"
+                      >
+                        연차휴가 사용 촉진서
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-vacation-plan"
+                      >
+                        연차 휴가 사용 계획서
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-salary"
+                      >
+                        연봉계약서
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-internal"
+                      >
+                        사내 업무 협조 요청서
+                      </button>
+                      <button
+                        class="contract-filter-btn"
+                        data-item="contract-personal-info"
+                      >
+                        근로자 개인정보 수집/활용 동의서
+                      </button>
+                    </div>
+                  </div>
+                  <div class="contract-board">
+                    <div class="contract-board-head">
+                      <div class="contract-name">
+                        <span class="contract-head-txt">계약서명</span>
+                      </div>
+                      <div class="contract-status">
+                        <span class="contract-head-txt">상태</span>
+                      </div>
+                      <div class="contract-turn">
+                        <span class="contract-head-txt">서명 차례</span>
+                      </div>
+                      <div class="contract-request">
+                        <span class="contract-head-txt">요청 보낸 사람</span>
+                      </div>
+                      <div class="contract-part">
+                        <span class="contract-head-txt">참여자</span>
+                      </div>
+                      <div class="contract-manage">
+                        <span class="contract-head-txt">관리</span>
+                      </div>
+                    </div>
+                    <div class="contract-board-body"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="notice">
+                <div class="dashboard notice">
+                  <div class="schedule-top notice">
+                    <div class="schedule-title">
+                      <h1>사내공지</h1>
+                      <button class="help-btn">
+                        <img src="images/help.svg" alt="도움말" />
+                      </button>
+                    </div>
+                    <div class="notice-control">
+                      <button class="notice-del-btn">
+                        <img src="images/notice-del2.svg" alt="notice-del" />
+                        <span class="notice-del-txt"
+                          >공지 삭제<span class="mob-none">하기</span></span
+                        >
+                      </button>
+                      <button class="notice-edit-btn">
+                        <img
+                          src="images/editnotification.svg"
+                          alt="notice-edit"
+                        />
+                        <span class="notice-edit-txt"
+                          >공지 수정<span class="mob-none">하기</span></span
+                        >
+                      </button>
+                      <button class="notice-add-btn">
+                        <img src="images/notice_acc_icon.svg" alt="notiadd" />
+                        <span class="notice-add-txt"
+                          >공지 추가<span class="mob-none">하기</span></span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                  <div class="notice-list-container">
+                    <table class="notice-main-table">
+                      <thead>
+                        <tr>
+                          <th style="width: 60px">번호</th>
+                          <th class="m-left">공지 제목</th>
+                          <th style="width: 100px">올린 사람</th>
+                          <th style="width: 120px">날짜</th>
+                          <th class="m-th" style="width: 100px">확인 인원</th>
+                          <th class="noti-chk-all">
+                            <span class="noti-chk-all-txt">전체</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="noticeListBody">
+                        <tr>
+                          <td></td>
+                          <td class="notice-t-title"></td>
+                          <td></td>
+                          <td></td>
+                          <td class="m-td"><span class="read-count"></span></td>
+                          <td>
+                            <input
+                              type="checkbox"
+                              name="notice-del-edit-chk"
+                              class="notice-del-edit-chk modal-request-checkbox"
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="message">
+                <div class="message-main-container">
+                  <div class="msg-side-left">
+                    <div class="recent-users-track">
+                      <h5 class="list-subtitle">즐겨찾기</h5>
+                      <div class="recent-list" id="recentUserList"></div>
+                    </div>
+                    <div class="chat-room-list">
+                      <h5 class="list-subtitle">대화 목록</h5>
+                      <div id="chatRoomList"></div>
+                    </div>
+                  </div>
+                  <div class="msg-center">
+                    <div class="chat-search-area">
+                      <input
+                        type="text"
+                        id="chatSearchInput"
+                        placeholder="대화내용 검색"
+                      />
+                      <button class="chat-search-cancel" id="chatSearchCancel">
+                        취소
+                      </button>
+                      <div class="msg-mobile-btn-wrap">
+                        <button
+                          class="mobile-menu-btn search"
+                          data-target="search"
+                        >
+                          <img src="images/search_blue.svg" alt="open" />
+                        </button>
+                        <button class="mobile-menu-btn left" data-target="left">
+                          <img src="images/mobile_chat.svg" alt="open" />
+                        </button>
+                        <button
+                          class="mobile-menu-btn right"
+                          data-target="right"
+                        >
+                          <img src="images/personfill.svg" alt="open" />
+                        </button>
+                      </div>
+                    </div>
+                    <div class="chat-active-header" id="chatHeader"></div>
+                    <div class="chat-display-area" id="chatDisplay"></div>
+                    <div class="chat-input-box">
+                      <textarea
+                        id="msgInput"
+                        placeholder="메시지를 입력하세요"
+                        rows="1"
+                        spellcheck="false"
+                      ></textarea>
+                      <button id="msgSendBtn">전송</button>
+                    </div>
+                  </div>
+
+                  <div class="msg-side-right">
+                    <div class="staff-search-area">
+                      <input
+                        type="text"
+                        id="staffSearchInput"
+                        placeholder="직원 이름 검색"
+                      />
+                    </div>
+                    <div class="staff-directory">
+                      <div id="deptStaffList" class="dept-accordion"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="section" data-page="account">
+                <div class="account-container">
+                  <div class="account-card profile-main">
+                    <div class="profile-header">
+                      <div class="avatar-large">하</div>
+                      <div class="profile-titles">
+                        <h2>하미니</h2>
+                        <p>HR Manager · MBC Company</p>
+                        <span class="badge-admin">ADMIN</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="account-grid">
+                    <div class="account-card">
+                      <h3>기본 정보</h3>
+                      <div class="info-list">
+                        <div class="info-item">
+                          <label>대표 이메일</label>
+                          <span id="displayEmail">0926alsl7@naver.com</span>
+                        </div>
+                        <div class="info-item">
+                          <label>생년월일</label>
+                          <span id="displayPhone">2002.09.26</span>
+                        </div>
+                        <div class="info-item">
+                          <label>전화번호</label>
+                          <span id="displayPhone">010-8214-9422</span>
+                        </div>
+                        <div class="info-item">
+                          <label>아이디</label>
+                          <span id="displayId">admin</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-card">
+                      <h3>계정 설정</h3>
+                      <div class="action-list">
+                        <button
+                          class="action-btn"
+                          onclick="openAccountModal('id')"
+                        >
+                          아이디 변경
+                        </button>
+                        <button
+                          class="action-btn"
+                          onclick="openAccountModal('pw')"
+                        >
+                          비밀번호 변경
+                        </button>
+                        <button class="action-btn logout" id="btnLogout">
+                          로그아웃
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <!--  -->
+    <!-- modal -->
+    <div class="modal--">
+      <div class="schedule-add-modal">
+        <div class="schedule-add-modal-content">
+          <div class="schedule-add-modal-head">
+            <h3>근무일정 추가</h3>
+            <img
+              src="images/close.svg"
+              alt="close"
+              class="schedule-close-modal"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>부서</label>
+            <select class="depart">
+              <option value="">선택</option>
+              <option>Management</option>
+              <option>Sales</option>
+              <option>Marketing</option>
+              <option>Design</option>
+              <option>Production</option>
+              <option>R&D</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>사원</label>
+            <select class="employee">
+              <option value="">부서 선택</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label id="jobLabel">직무</label>
+            <select class="job">
+              <option value="">선택</option>
+              <option value="red">Management</option>
+              <option value="blue">Sales</option>
+              <option value="purple">Marketing</option>
+              <option value="yellow">Design</option>
+              <option value="green">Production</option>
+              <option value="orange">R&D</option>
+              <option value="teal">출장</option>
+            </select>
+          </div>
+          <div class="form-group inline">
+            <label>근무날짜</label>
+            <div class="fake-input fakeDate">
+              <img src="images/schedule2.svg" alt="icon" />
+              <span class="fakeDateText">날짜 선택</span>
+              <input type="date" class="workDate" />
+            </div>
+            <button type="button" class="setToday">오늘</button>
+          </div>
+
+          <div class="form-group inline">
+            <label>근무시간</label>
+            <div class="m-col">
+              <div class="fake-input fakeStart">
+                <img src="images/timecheck.svg" alt="icon" />
+                <span class="fakeStartText"></span>
+                <input type="time" class="startTime" step="600" />
+              </div>
+              <div class="fake-input fakeEnd">
+                <img src="images/timecheck.svg" alt="icon" />
+                <span class="fakeEndText"></span>
+                <input type="time" class="endTime" step="600" />
+              </div>
+            </div>
+          </div>
+          <div class="confirm-btn-wrap">
+            <button class="confirm-add">일정 추가</button>
+            <button class="confirm-cancel"></button>
+          </div>
+        </div>
+      </div>
+      <div class="vacation-rate-modal modal is-hidden">
+        <div class="vacation-rate-modal-card modal-card">
+          <div class="vacation-rate-modal-card-head modal-head">
+            <h3
+              class="vacation-rate-modal-card-modal-title-text modal-title-text"
+            >
+              연차휴가 사용률
+            </h3>
+            <button class="close-rate-modal">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="vacation-rate-modal-content modal-content">
+            <div
+              class="vacation-rate-modal-summary-item summay-item rate-main-graph"
+            >
+              <div class="summary-row">
+                <div class="summary-text">
+                  <span class="label"> 전체 평균 사용률 </span>
+                  <strong class="value">64<span class="small">%</span></strong>
+                </div>
+                <span class="summary-sub">권장 사용률 대비 12% 증가</span>
+              </div>
+              <div class="progress toss">
+                <div class="progress-bar" data-value="64"></div>
+              </div>
+            </div>
+            <div class="rate-employee-list">
+              <h5 class="list-title"></h5>
+              <div class="employee-rate-item active"></div>
+            </div>
+            <div class="vacation-rate-request-form">
+              <div class="vacation-rate-request-form-wrap">
+                <div class="form-group">
+                  <label>부서</label>
+                  <select class="depart">
+                    <option value="">선택</option>
+                    <option>Management</option>
+                    <option>Sales</option>
+                    <option>Marketing</option>
+                    <option>Design</option>
+                    <option>Production</option>
+                    <option>R&D</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>직원</label>
+                  <select class="employee">
+                    <option value="">선택</option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="vacation-rate-request-btn">
+                <button type="button" class="promote-btn">
+                  연차휴가 사용 촉진
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="vacation-rate-modal-action action">
+            <button class="confirm">확인</button>
+            <button class="cancel">취소</button>
+          </div>
+        </div>
+      </div>
+      <div class="row-action-modal modal is-hidden">
+        <div class="row-action-card modal-card">
+          <div class="row-action-card-head modal-head">
+            <h4 class="row-action-modal-title-text modal-title-text">
+              확정 일정 수정
+            </h4>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="row-action-modal-content modal-content">
+            <h5 class="row-action-modal-shedule-text"></h5>
+          </div>
+          <div class="row-action-modal-action action">
+            <button class="edit">수정</button>
+            <button class="delete">삭제</button>
+          </div>
+        </div>
+      </div>
+      <div class="month-saved-modal modal is-hidden">
+        <div class="month-saved-modal-card modal-card">
+          <div class="month-saved-modal modal-head">
+            <h4 class="month-saved-modal-text modal-title-text"></h4>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <button class="check-all-btn" data-dept="all">전체</button>
+          <div class="month-saved-modal-content modal-content"></div>
+          <div class="month-saved-modal-action action">
+            <button class="edit">수정</button>
+            <button class="delete">삭제</button>
+          </div>
+        </div>
+      </div>
+      <div class="approval-detail-modal modal is-hidden">
+        <div class="approval-detail-modal-card modal-card">
+          <div class="approval-detail-card-head modal-head">
+            <h4 class="modal-title-text">요청사항 검토</h4>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="approval-detail-content modal-content">
+            <div class="approval-detail-content-left">
+              <div class="approval-detail-row">
+                <label for="">
+                  <span class="approval-detail-row-title">요청자</span>
+                  <div class="approval-employee-detail">
+                    <span class="approval-employee-name"></span>
+                    <span class="approval-employee-job"></span>
+                  </div>
+                </label>
+              </div>
+              <div class="approval-detail-row">
+                <label for="">
+                  <span class="approval-detail-row-title">승인권자</span>
+                  <select name="approver" id="approver-select" disabled>
+                    <option value="">선택</option>
+                    <option value="Management">정희석, 하미니</option>
+                    <option value="Sales">이유정, 하미니</option>
+                    <option value="Marketing">정하늘, 하미니</option>
+                    <option value="Design">하다경, 하미니</option>
+                    <option value="Production">김형선, 하미니</option>
+                    <option value="R&D">김민이, 하미니</option>
+                  </select>
+                </label>
+              </div>
+              <div class="approval-detail-row">
+                <label class="approval-detail-col">
+                  <span class="approval-detail-row-title">요청사유</span>
+                  <textarea
+                    id="approval-detail-reason"
+                    spellcheck="false"
+                    disabled
+                  ></textarea>
+                </label>
+              </div>
+            </div>
+            <div class="approval-detail-content-right">
+              <div class="approval-detail-row">
+                <label for="">
+                  <span class="approval-detail-row-title">요청사항</span>
+                  <div class="approval-detail-request-item">
+                    <button class="approval-detail-request-date">
+                      6월 7일(목)
+                    </button>
+                    <button class="approval-detail-request-content">
+                      연장 근무(18:00 ~ 21:00)
+                    </button>
+                  </div>
+                </label>
+              </div>
+              <div class="approval-detail-row">
+                <label for="">
+                  <span class="approval-detail-row-title">재택근무 신청</span>
+                  <button class="approval-detail-request-item"></button>
+                </label>
+              </div>
+              <div class="approval-detail-row">
+                <label for="">
+                  <span class="approval-detail-row-title">근무시간 수정</span>
+                  <button class="approval-detail-request-item"></button>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="approval-detail-action action">
+            <button class="approval">확인</button>
+            <button class="cancel">닫기</button>
+          </div>
+        </div>
+      </div>
+      <div class="contract-detail-modal modal is-hidden">
+        <div class="contract-detail-modal-card modal-card">
+          <div class="contract-detail-card-head modal-head">
+            <h4 class="modal-title-text">전자계약 요청사항 검토</h4>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="contract-detail-content modal-content">
+            <div class="contract-detail-content-left">
+              <div class="contract-detail-row">
+                <label for="">
+                  <span class="contract-detail-row-title">요청자</span>
+                  <div class="contract-employee-detail">
+                    <span class="contract-employee-name"></span>
+                    <span class="contract-employee-job"></span>
+                  </div>
+                </label>
+              </div>
+              <div class="contract-detail-row">
+                <div class="contract-detail-col">
+                  <span class="contract-detail-row-title">계약서명</span>
+                  <span class="contract-name"></span>
+                </div>
+              </div>
+              <div class="contract-detail-row mob-col">
+                <span class="contract-detail-row-title">승인 상태</span>
+              </div>
+              <div class="contract-detail-row">
+                <div class="contract-detail-col">
+                  <span class="contract-detail-row-title">서명 참여자</span>
+                  <span class="contract-detail-sign-first"></span>
+                  <span class="contract-detail-sign-second"></span>
+                </div>
+              </div>
+            </div>
+            <div class="contract-detail-content-right">
+              <div class="contract-detail-row">
+                <form
+                  action=""
+                  class="contract-request-form"
+                  id="dynamic-form-fields-detail"
+                >
+                  <h6 class="modal-subtitle-text"></h6>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="contract-detail-action action">
+            <button class="approval">확인</button>
+            <button class="cancel">닫기</button>
+          </div>
+        </div>
+      </div>
+      <div class="reject-action-modal modal is-hidden">
+        <div class="reject-modal-card modal-card">
+          <div class="reject-action-card-head modal-head">
+            <div class="reject-modal-head">
+              <h4 class="modal-title-text">해당요청을 반려하시겠습니까?</h4>
+              <span class="modal-text">* 이 작업은 되돌릴 수 없습니다</span>
+            </div>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="reject-modal-content modal-content">
+            <select name="" id="reject-modal-reason">
+              <option value="">선택</option>
+              <option value="">기준 미달</option>
+              <option value="">중복·누락 정보</option>
+              <option value="">형식·서류 미비</option>
+              <option value="">정책·제도 위반</option>
+              <option value="">요청 내용 불분명</option>
+              <option value="">기타</option>
+            </select>
+            <input
+              type="text"
+              name=""
+              id="reject-modal-reason-etc"
+              placeholder="반려 사유를 입력해주세요"
+            />
+          </div>
+          <div class="reject-modal-action action">
+            <button class="approval" onclick="handleFinalAction('reject')">
+              반려하기
+            </button>
+            <button class="cancel" onclick="closeModal()">취소</button>
+          </div>
+        </div>
+      </div>
+      <div class="approve-action-modal modal is-hidden">
+        <div class="approve-modal-card modal-card">
+          <div class="approve-action-card-head modal-head">
+            <div class="approve-modal-head">
+              <h4 class="modal-title-text">해당요청을 승인하시겠습니까?</h4>
+              <span class="modal-text">* 이 작업은 되돌릴 수 없습니다</span>
+            </div>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="approve-modal-content modal-content">
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="근무일정 생성 요청 내용 확인했습니다"
+            />
+          </div>
+          <div class="approve-modal-action action">
+            <button class="approval" onclick="handleFinalAction('approve')">
+              승인하기
+            </button>
+            <button class="cancel" onclick="closeModal()">취소</button>
+          </div>
+        </div>
+      </div>
+      <div class="contract-request-modal modal is-hidden">
+        <div class="contract-request-card modal-card">
+          <div class="contract-request-card-head modal-head">
+            <h4 class="modal-title-text">전자계약 요청</h4>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="contract-request-content modal-content">
+            <div class="contract-request-modal-row">
+              <h5 class="modal-subtitle-text">템플릿</h5>
+              <select
+                name="contractTemplate"
+                id="contract-template-select"
+                class="contract-template-select"
+              >
+                <option value="">선택</option>
+                <option value="contract-work">근로계약서</option>
+                <option value="contract-protect">정보보호 서약서</option>
+                <option value="contract-vacation">연차휴가 사용 촉진서</option>
+                <option value="contract-salary">연봉계약서</option>
+                <option value="contract-internal">사내 업무 협조 요청서</option>
+                <option value="contract-personal-info">
+                  근로자 개인정보 수집/활용 동의서
+                </option>
+                <option value="contract-vacation-plan1" disabled>
+                  연차 휴가 사용 계획서 1차
+                </option>
+                <option value="contract-vacation-plan2" disabled>
+                  연차 휴가 사용 계획서 2차
+                </option>
+              </select>
+            </div>
+            <div class="contract-request-modal-row">
+              <h5 class="modal-subtitle-text">서명 요청할 직원들</h5>
+              <select id="contract-target-select">
+                <option value="">선택</option>
+                <option value="All">전체</option>
+                <option value="leader">팀장</option>
+                <option value="Personal">개인</option>
+                <option value="Management">Management</option>
+                <option value="Sales">Sales</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Design">Design</option>
+                <option value="Production">Production</option>
+                <option value="R&D">R&D</option>
+              </select>
+            </div>
+            <div class="target-personal-row is-hidden">
+              <h5 class="modal-subtitle-text">상세 대상</h5>
+              <div class="contract-request-modal-detail-select">
+                <select id="target-dept-select" style="flex: 1">
+                  <option value="">부서 선택</option>
+                </select>
+                <select id="target-emp-select" style="flex: 1">
+                  <option value="">직원 선택</option>
+                </select>
+              </div>
+            </div>
+            <div class="contract-request-modal-row">
+              <h5 class="modal-subtitle-text">직원 서명 차수</h5>
+              <div class="contract-request-modal-col sign-order">
+                <label for="" class="modal-request-checkbox-text"
+                  ><input
+                    type="checkbox"
+                    name="modal-request-checkbox"
+                    class="order-chk-1 modal-request-checkbox"
+                  />1 (근로자)</label
+                >
+                <label for="" class="modal-request-checkbox-text"
+                  ><input
+                    type="checkbox"
+                    name="modal-request-checkbox"
+                    class="order-chk-2 modal-request-checkbox"
+                  />2 (팀장)</label
+                >
+              </div>
+            </div>
+            <div class="contract-request-modal-row sign">
+              <h5 class="modal-subtitle-text">서명 유효 기간</h5>
+              <input type="number" id="contract-expire-days" value="7" />
+              <h5 class="modal-subtitle-text gray">일</h5>
+            </div>
+            <div class="contract-request-modal-col request-form">
+              <h6 class="modal-subtitle-text">문서 내용 연결</h6>
+              <form
+                action=""
+                class="contract-request-form"
+                id="dynamic-form-fields-request"
+              ></form>
+            </div>
+            <div class="contract-request-modal-col request-message">
+              <h5 class="modal-subtitle-text">전자계약 요청 메시지</h5>
+              <textarea
+                id="contract-request-message"
+                spellcheck="false"
+              ></textarea>
+            </div>
+          </div>
+          <div class="contract-request-action action" id="vacation-approval">
+            <button class="approval">요청하기</button>
+            <button class="cancel">취소</button>
+          </div>
+        </div>
+      </div>
+      <div class="notice-add-modal modal is-hidden">
+        <div class="notice-add-card modal-card">
+          <div class="notice-add-card-head modal-head">
+            <h4 class="modal-title-text">공지사항 추가</h4>
+            <button class="close">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="notice-add-content modal-content">
+            <div class="mobile-notice-tabs">
+              <button type="button" class="tab-btn active" data-tab="left">
+                공지 작성
+              </button>
+              <button type="button" class="tab-btn" data-tab="right">
+                미리보기
+              </button>
+            </div>
+            <div class="notice-add-content-left">
+              <div class="notice-add-modal-row">
+                <h5 class="modal-subtitle-text">공지사항 제목</h5>
+                <input type="text" name="" id="" class="m-noti-title" />
+              </div>
+              <div class="notice-add-modal-row">
+                <h5 class="modal-subtitle-text">템플릿</h5>
+                <select
+                  name="noticeaddTemplate"
+                  id="notice-add-template-select"
+                >
+                  <option value="">선택</option>
+                  <option value="notice-edu">교육 이수 안내</option>
+                  <option value="notice-system">시스템 정기 점검 안내</option>
+                  <option value="notice-request">신청 안내</option>
+                  <option value="notice-submit">제출 안내</option>
+                  <option value="notice-vacation">휴무 안내</option>
+                  <option value="notice-schedule">일정 공지</option>
+                  <option value="notice-update">업데이트 공지</option>
+                  <option value="notice-campaign">참여 안내</option>
+                  <option value="notice-etc">기타</option>
+                </select>
+              </div>
+              <div class="notice-add-modal-row">
+                <h5 class="modal-subtitle-text">공지 대상</h5>
+                <select id="notice-target-select">
+                  <option value="">선택</option>
+                  <option value="All">전체</option>
+                  <option value="leader">팀장</option>
+                  <option value="Management">Management</option>
+                  <option value="Sales">Sales</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Design">Design</option>
+                  <option value="Production">Production</option>
+                  <option value="R&D">R&D</option>
+                </select>
+              </div>
+              <div class="notice-add-modal-row">
+                <h5 class="modal-subtitle-text">알람</h5>
+                <div class="notice-add-modal-sns notice-chk">
+                  <label for="" class="modal-request-checkbox-text"
+                    ><input
+                      type="checkbox"
+                      name="modal-notice-checkbox"
+                      class="notice-chk-1 modal-request-checkbox"
+                    />
+                    <span class="notice-add-modal-chk">이메일</span>
+                  </label>
+                  <label for="" class="modal-request-checkbox-text"
+                    ><input
+                      type="checkbox"
+                      name="modal-notice-checkbox"
+                      class="notice-chk-2 modal-request-checkbox"
+                    /><span class="notice-add-modal-chk">문자</span></label
+                  >
+                </div>
+              </div>
+              <div class="notice-add-modal-row">
+                <h5 class="modal-subtitle-text">선택</h5>
+                <select name="noticeaddDetail" id="notice-add-detail-select">
+                  <option value="">선택</option>
+                </select>
+              </div>
+              <div class="notice-add-modal-row">
+                <h5 class="modal-subtitle-text">내용</h5>
+                <textarea
+                  id="notice-content-input"
+                  placeholder="공지 내용을 입력하세요"
+                  spellcheck="false"
+                ></textarea>
+              </div>
+            </div>
+            <div class="notice-add-content-right">
+              <div class="empty-preview">
+                템플릿을 선택하면 미리보기가 나타납니다.
+              </div>
+            </div>
+          </div>
+          <div class="notice-add-action action">
+            <div class="notice-add-modal-row">
+              <button class="notice-preview">내용 미리보기</button>
+            </div>
+            <div class="notice-add-action-wrap">
+              <button class="approval">추가하기</button>
+              <button class="cancel">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="accountModal" class="account-modal modal is-hidden">
+        <div class="account-modal-card modal-card">
+          <div class="account-modal-card-head modal-head">
+            <h4 id="modalTitleText" class="modal-title-text">아이디 변경</h4>
+            <button class="close" onclick="closeAccountModal()">
+              <img src="images/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="account-modal-content modal-content">
+            <div class="account-modal-row">
+              <h5 id="currentValTitle" class="modal-subtitle-text">
+                현재 아이디
+              </h5>
+              <div class="input-with-msg">
+                <input
+                  type="text"
+                  id="currentValInput"
+                  placeholder="입력"
+                  class="account-modal-enter"
+                />
+                <p id="currentErrorMsg" class="modal-error-msg"></p>
+              </div>
+              <button id="btnVerify" class="id-confirm">인증</button>
+            </div>
+
+            <div class="account-modal-row">
+              <h5 id="newValTitle" class="modal-subtitle-text">
+                변경하실 아이디
+              </h5>
+              <input
+                type="text"
+                id="newValInput"
+                placeholder="인증 후 입력가능"
+                class="account-modal-enter"
+                disabled
+              />
+            </div>
+
+            <div class="account-modal-row center">
+              <button
+                class="noidpassword"
+                onclick="alert('인증번호가 발송되었습니다.')"
+              >
+                <span id="forgetText" class="noidpassword-txt">아이디</span>를
+                몰라요
+              </button>
+            </div>
+
+            <div class="account-modal-action action">
+              <button id="btnSaveChange" class="confirm" disabled>
+                변경하기
+              </button>
+              <button class="cancel" onclick="closeAccountModal()">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

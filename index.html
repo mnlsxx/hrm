@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Management System</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="icon" type="images/png" sizes="32x32" href="images/favicon-32x32.png">
+     <link rel="icon" type="images/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="stylesheet" href="login.css" />
+    <script src="login.js" defer></script>
+  </head>
+  <body class="login-page">
+    <div class="login-wrap">
+      <div class="login-card">
+        <h1 class="logo">HRMS</h1>
+      <form class="login-form">
+  <div class="input-wrap">
+    <input type="text" id="userId" placeholder="ID" autocomplete="username" />
+  </div>
+
+  <div class="input-wrap pw-wrap">
+    <input type="password" id="userPw" placeholder="Password" autocomplete="current-password" />
+    <button type="button" class="btn-eye" aria-label="비밀번호 보기"></button>
+  </div>
+
+  <div class="login-options">
+    <label class="chk-wrap">
+      <input type="checkbox" />
+      <span class="chk-box"></span>
+      <span class="chk-text">아이디 저장</span>
+    </label>
+    <a href="#" class="find-pw">비밀번호 찾기</a>
+  </div>
+
+  <p class="error-msg"></p>
+
+  <button type="submit" class="btn-login">로그인</button>
+</form>
+      </div>
+    </div>
+  </body>
+</html>
